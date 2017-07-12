@@ -1,8 +1,11 @@
 #--------------<Built-in Functions>--------------
 
-minusOne = lambda x:x-1
-add      = lambda x:sum(int(i) for i in x)
-square   = lambda x:x**2
+minusOne       = lambda x:x-1
+add            = lambda x:sum(int(i) for i in x)
+square         = lambda x:x**2
+rangeInclusive = lambda x:rangeExclusive(x)+[x]
+rangeExclusive = lambda x:[i for i in range(1,x)]
+printer        = lambda x:print(x) 
 
 #--------------<Built-in Functions/>-------------
 
@@ -10,8 +13,27 @@ def atomicInterpret(atom,arguments):
  dictionary={
 	'¬':minusOne,
 	'+':add,
-	'S':square
+	'R':rangeInclusive,
+	'r':rangeExclusive,
+	'S':square,
+	'P':printer
  }
  return dictionary[atom](arguments)
+ 
+def isIntLiteral(x):
+ return x in[str(i) for i in range(10)]
+ 
+def tokenizer(statement):
+  tokens,i,j=[],0,0
+  while i<len(statement):
+   token=statement[i]
+   if isIntLiteral(token):
+    print("here")
+    j=1
+    while i+j<len(statement)and isIntLiteral(statement[i+j]):m=int(statement[i+j]);token+=statement[i+j];j+=1
+    i+=j
+   else:i+=1
+   tokens+=[token]
+  return tokens
 
-print(atomicInterpret('S',9))
+print(tokenizer('¬12S¬'))
