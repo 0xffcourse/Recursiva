@@ -28,12 +28,18 @@ def tokenizer(statement):
   while i<len(statement):
    token=statement[i]
    if isIntLiteral(token):
-    print("here")
     j=1
     while i+j<len(statement)and isIntLiteral(statement[i+j]):m=int(statement[i+j]);token+=statement[i+j];j+=1
-    i+=j
-   else:i+=1
-   tokens+=[token]
+    i+=j;tokens+=[int(token)]
+   else:i+=1;tokens+=[token]
   return tokens
+  
+def evaluate(statement):
+ stack=tokenizer(statement)
+ while len(stack)>1:
+  literal=stack.pop()
+  function=stack.pop()
+  stack+=[atomicInterpret(function,literal)]
+ return stack.pop()
 
-print(tokenizer('¬12S¬'))
+print(evaluate('¬S¬7'))
