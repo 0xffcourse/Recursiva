@@ -24,15 +24,16 @@ def isIntLiteral(x):
  return x in[str(i) for i in range(10)]
  
 def tokenizer(statement):
-  tokens,i,j=[],0,0
-  while i<len(statement):
-   token=statement[i]
-   if isIntLiteral(token):
-    j=1
-    while i+j<len(statement)and isIntLiteral(statement[i+j]):m=int(statement[i+j]);token+=statement[i+j];j+=1
-    i+=j;tokens+=[int(token)]
-   else:i+=1;tokens+=[token]
-  return tokens
+ statement=''.join(statement.split())
+ tokens,i,j=[],0,0
+ while i<len(statement):
+  token=statement[i]
+  if isIntLiteral(token):
+   j=1
+   while i+j<len(statement)and isIntLiteral(statement[i+j]):m=int(statement[i+j]);token+=statement[i+j];j+=1
+   i+=j;tokens+=[int(token)]
+  else:i+=1;tokens+=[token]
+ return tokens
   
 def evaluate(statement):
  stack=tokenizer(statement)
@@ -42,4 +43,4 @@ def evaluate(statement):
   stack+=[atomicInterpret(function,literal)]
  return stack.pop()
 
-print(evaluate('¬S¬7'))
+print(evaluate('¬S¬ 7'))
