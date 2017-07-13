@@ -34,7 +34,7 @@ def tokenizer(statement):
 				token+=statement[i+j];j+=1
 			i+=j;tokens+=[int(token)]
 		else:
-			if statement[i]==' ':i+=1
+			if token==' 'or token=='	':i+=1
 			else:i+=1;tokens+=[token]
 	return tokens
 
