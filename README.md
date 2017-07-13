@@ -4,7 +4,7 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 # How to run? 
 
-#### <i>You need python to run the interpreter. REPL might need few modifications for non-windows platform</i> 
+#### <i>You need python (3.5+ recommended) to run the interpreter. REPL might need few modifications for non-windows platform</i> 
 
   1. Just Fire `python Recursiva.py` to start the REPL. Or,
 
@@ -19,7 +19,7 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 # Play around with basic commands:
 
-AS of now only few monadic atoms like ¬(minus one) and S(square) are available. The operations are basically postfix.
+AS of now only few monadic atoms like ¬(minus one) and S(square) are available. The operations are basically pre-fix.
 
 To calculate (7)^2-1, use:
 >>¬S7 
