@@ -4,7 +4,16 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 # How to run? 
 
-Just Fire `python Recursiva.py` to start the REPL. Or,
+  1. Just Fire `python Recursiva.py` to start the REPL. Or,
+
+  2. If you are on windows:
+
+    a. Set RECURSIVA_ENV to the folderpath containing the RecursivaInterpreter.py, Recursiva.py(REPL) and 
+       recursiva.bat(batch file).
+  
+    b. Add '%RECURSIVA_ENV%' to the Path variable  
+  
+    c. Now typing `recursiva` in the command line anywhere will run the REPL.   
 
 # Play around with basic commands:
 
