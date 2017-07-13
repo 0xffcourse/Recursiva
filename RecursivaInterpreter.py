@@ -11,20 +11,19 @@ printer        = lambda x:print(x)
 
 def atomicInterpret(atom,arguments):
 	dictionary={
-	'¬':minusOne,
-	'+':add,
-	'R':rangeInclusive,
-	'r':rangeExclusive,
-	'S':square,
-	'P':printer
+	'¬':{'func':minusOne,'arg':1},
+	'+':{'func':add,'arg':2},
+	'R':{'func':rangeInclusive,'arg':1},
+	'r':{'func':rangeExclusive,'arg':1},
+	'S':{'func':square,'arg':1},
+	'P':{'func':printer,'arg':1}
 	}
-	return dictionary[atom](arguments)
+	return dictionary[atom]['func'](arguments)
 
 def isIntLiteral(x):
 	return x in[str(i) for i in range(10)]
  
 def tokenizer(statement):
-	statement=''.join(statement.split())
 	tokens,i,j=[],0,0
 	while i<len(statement):
 		token=statement[i]
@@ -34,7 +33,9 @@ def tokenizer(statement):
 				m=int(statement[i+j])
 				token+=statement[i+j];j+=1
 			i+=j;tokens+=[int(token)]
-		else:i+=1;tokens+=[token]
+		else:
+			if statement[i]==' ':i+=1
+			else:i+=1;tokens+=[token]
 	return tokens
 
 def evaluate(statement):
