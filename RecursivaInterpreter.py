@@ -7,17 +7,18 @@ rangeInclusive = lambda x:rangeExclusive(x)+[x]
 rangeExclusive = lambda x:[i for i in range(1,x)]
 printer        = lambda x:print(x) 
 
-#--------------<Built-in Functions/>-------------
-
-def atomicInterpret(atom,arguments):
-	dictionary={
+dictionary={
 	'¬':{'func':minusOne,'arg':1},
 	'+':{'func':add,'arg':2},
 	'R':{'func':rangeInclusive,'arg':1},
 	'r':{'func':rangeExclusive,'arg':1},
 	'S':{'func':square,'arg':1},
 	'P':{'func':printer,'arg':1}
-	}
+}
+
+#--------------<Built-in Functions/>-------------
+
+def atomicInterpret(atom,arguments):
 	return dictionary[atom]['func'](arguments)
 
 def isIntLiteral(x):
@@ -39,12 +40,14 @@ def tokenizer(statement):
 	return tokens
 
 def evaluate(statement):
-	stack=tokenizer(statement)
-	while len(stack)>1:
-		literal=stack.pop()
-		function=stack.pop()
-		stack+=[atomicInterpret(function,literal)]
-	return stack.pop()
+	operatorStack=[]
+	operandStack=[]
+	for token in tokenizer(statement):
+		if token in dictionary.keys():operatorStack.append(token)
+		else:operandStack.append(token)
+	while operatorStack:
+		operandStack+=[atomicInterpret(operatorStack.pop(),operandStack.pop())]
+	return operandStack.pop()
 
 def interpret(statement):
 	return str(evaluate(statement))
