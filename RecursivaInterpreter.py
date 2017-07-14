@@ -46,8 +46,16 @@ def evaluate(statement):
 		if token in dictionary.keys():operatorStack.append(token)
 		else:operandStack.append(token)
 	while operatorStack:
-		operandStack+=[atomicInterpret(operatorStack.pop(),operandStack.pop())]
-	return operandStack.pop()
+		operator=operatorStack.pop()
+		try:
+			operand=operandStack.pop()
+			operandStack.append(atomicInterpret(operator,operand))
+		except:
+			raise Exception("Too few operands")
+	result = operandStack.pop()
+	if operandStack:raise Exception("Too many operands")
+	return result 
 
 def interpret(statement):
-	return str(evaluate(statement))
+	try:return str(evaluate(statement))
+	except:raise Exception("Parse error")
