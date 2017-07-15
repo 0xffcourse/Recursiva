@@ -53,13 +53,6 @@ def evaluate(statement):
 			operatorStack.append(token)
 		else:
 			operandStack.append(token)	
-			if operatorStack and len(operandStack)>=dictionary[operatorStack[-1]]['args']:
-				operands=[]
-				argsLeft = dictionary[operatorStack[-1]]['args']
-				while argsLeft:
-					operands.append(operandStack.pop())
-					argsLeft-=1
-				operandStack.append(atomicInterpret(operatorStack.pop(),operands))
 	while operatorStack:
 		operator=operatorStack.pop()
 		try:
