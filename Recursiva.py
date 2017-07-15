@@ -7,5 +7,5 @@ while 1:
 	inString=input(">>")
 	if inString=="q":break;
 	try:print('=>'+RecursivaInterpreter.interpret(inString))
-	except:print("=>Error")
+	except:print("=>Parse Error")
 	

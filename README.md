@@ -19,7 +19,20 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 # Play around with basic commands:
 
-AS of now only few monadic atoms like ¬(minus one) and S(square) are available. The operations are basically pre-fix.
+    Operands that take 1-argument:
+    
+    ¬: MinusOne
+    S: Square
+    R: List of n-natural numbers
+    r: Exclusive list of n-natural numbers
+
+    OPerands that take 2-arguments:
+
+    +: Plus 
+    -: Minus
+    *: Multiply
+    /: Divide
+    
 
 To calculate (7)^2-1, use:
 >>¬S7 
@@ -30,3 +43,5 @@ To caclculate (((7-1)^2)-1)^2-1, use:
 >>¬	S	¬ S ¬ 7    
 
 [Note: Arbitrary whitespaces are allowed (except in literals)]
+
+To calculate ((4+6)*2)^2-1

@@ -1,15 +1,13 @@
 #--------------<Built-in Functions>--------------
 
-add				= lambda x,y:x+y
-subtract		= lambda x,y:x-y
-multiply		= lambda x,y:x*y
-divide			= lambda x,y:x/y
-minusOne		= lambda x:x-1
-square			= lambda x:x**2
-rangeInclusive	= lambda x:[i for i in range(1,x+1)]
-rangeExclusive	= lambda x:[i for i in range(1,x)]
-printNL			= lambda x:print(x)
-printNNL		= lambda x:print(end=x) 
+add					= lambda x,y:x+y
+subtract			= lambda x,y:x-y
+multiply			= lambda x,y:x*y
+divide				= lambda x,y:x/y
+minusOne			= lambda x:x-1
+square				= lambda x:x**2
+rangeInclusive		= lambda x:[i for i in range(1,x+1)]
+rangeExclusive		= lambda x:[i for i in range(1,x)]
 
 dictionary={
 	'¬':{'func':minusOne,'args':1},
@@ -20,16 +18,14 @@ dictionary={
 	'R':{'func':rangeInclusive,'args':1},
 	'r':{'func':rangeExclusive,'args':1},
 	'S':{'func':square,'args':1},
-	'P':{'func':printNL,'args':1},
-	'p':{'func':printNNL,'args':1}
 }
 
 #--------------<Built-in Functions/>-------------
 
 def atomicInterpret(atom,arguments):
 	if len(arguments)==1:return dictionary[atom]['func'](arguments[0])
-	if len(arguments)==2:return dictionary[atom]['func'](arguments[0],arguments[1])
-	if len(arguments)==3:return dictionary[atom]['func'](arguments[0],arguments[1],arguments[2])
+	if len(arguments)==2:return dictionary[atom]['func'](arguments[1],arguments[0])
+	if len(arguments)==3:return dictionary[atom]['func'](arguments[2],arguments[1],arguments[0])
 
 def isIntLiteral(x):
 	return x in[str(i) for i in range(10)]
@@ -53,8 +49,17 @@ def evaluate(statement):
 	operatorStack=[]
 	operandStack=[]
 	for token in tokenizer(statement):
-		if token in dictionary.keys():operatorStack.append(token)
-		else:operandStack.append(token)
+		if token in dictionary.keys():
+			operatorStack.append(token)
+		else:
+			operandStack.append(token)	
+			if operatorStack and len(operandStack)>=dictionary[operatorStack[-1]]['args']:
+				operands=[]
+				argsLeft = dictionary[operatorStack[-1]]['args']
+				while argsLeft:
+					operands.append(operandStack.pop())
+					argsLeft-=1
+				operandStack.append(atomicInterpret(operatorStack.pop(),operands))
 	while operatorStack:
 		operator=operatorStack.pop()
 		try:
@@ -65,12 +70,15 @@ def evaluate(statement):
 				argsLeft-=1
 			operandStack.append(atomicInterpret(operator,operands))
 		except:
-			raise Exception("Too few operands")
-	result = operandStack.pop()
-	print(operandStack)
-	if operandStack:raise Exception("Too many operands")
-	return result 
-
+			print("Too few operands")
+			raise Exception
+	if len(operandStack)>1:
+		print ("Too many operands")
+		raise Exception 
+	return operandStack.pop()
+	
 def interpret(statement):
-	try:return str(evaluate(statement))
-	except:raise Exception("Parse error")
+	try:
+		return str(evaluate(statement))
+	except:
+		raise Exception
