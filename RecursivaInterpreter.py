@@ -8,18 +8,20 @@ rangeExclusive = lambda x:[i for i in range(1,x)]
 printer        = lambda x:print(x) 
 
 dictionary={
-	'¬':{'func':minusOne,'arg':1},
-	'+':{'func':add,'arg':2},
-	'R':{'func':rangeInclusive,'arg':1},
-	'r':{'func':rangeExclusive,'arg':1},
-	'S':{'func':square,'arg':1},
-	'P':{'func':printer,'arg':1}
+	'¬':{'func':minusOne,'args':1},
+	'+':{'func':add,'args':2},
+	'R':{'func':rangeInclusive,'args':1},
+	'r':{'func':rangeExclusive,'args':1},
+	'S':{'func':square,'args':1},
+	'P':{'func':printer,'args':1}
 }
 
 #--------------<Built-in Functions/>-------------
 
 def atomicInterpret(atom,arguments):
-	return dictionary[atom]['func'](arguments)
+	if len(arguments)==1:return dictionary[atom]['func'](arguments[0])
+	if len(arguments)==2:return dictionary[atom]['func'](arguments[0],arguments[1])
+	if len(arguments)==3:return dictionary[atom]['func'](arguments[0],arguments[1],arguments[2])
 
 def isIntLiteral(x):
 	return x in[str(i) for i in range(10)]
@@ -48,8 +50,12 @@ def evaluate(statement):
 	while operatorStack:
 		operator=operatorStack.pop()
 		try:
-			operand=operandStack.pop()
-			operandStack.append(atomicInterpret(operator,operand))
+			operands=[]
+			argsLeft = dictionary[operator]['args']
+			while argsLeft:
+				operands.append(operandStack.pop())
+				argsLeft-=1
+			operandStack.append(atomicInterpret(operator,operands))
 		except:
 			raise Exception("Too few operands")
 	result = operandStack.pop()
