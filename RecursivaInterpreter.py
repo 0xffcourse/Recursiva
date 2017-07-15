@@ -1,19 +1,27 @@
 #--------------<Built-in Functions>--------------
 
-minusOne       = lambda x:x-1
-add            = lambda x,y:x+y
-square         = lambda x:x**2
-rangeInclusive = lambda x:rangeExclusive(x)+[x]
-rangeExclusive = lambda x:[i for i in range(1,x)]
-printer        = lambda x:print(x) 
+add				= lambda x,y:x+y
+subtract		= lambda x,y:x-y
+multiply		= lambda x,y:x*y
+divide			= lambda x,y:x/y
+minusOne		= lambda x:x-1
+square			= lambda x:x**2
+rangeInclusive	= lambda x:[i for i in range(1,x+1)]
+rangeExclusive	= lambda x:[i for i in range(1,x)]
+printNL			= lambda x:print(x)
+printNNL		= lambda x:print(end=x) 
 
 dictionary={
 	'¬':{'func':minusOne,'args':1},
 	'+':{'func':add,'args':2},
+	'-':{'func':subtract,'args':2},
+	'*':{'func':multiply,'args':2},
+	'/':{'func':divide,'args':2},
 	'R':{'func':rangeInclusive,'args':1},
 	'r':{'func':rangeExclusive,'args':1},
 	'S':{'func':square,'args':1},
-	'P':{'func':printer,'args':1}
+	'P':{'func':printNL,'args':1},
+	'p':{'func':printNNL,'args':1}
 }
 
 #--------------<Built-in Functions/>-------------
@@ -59,6 +67,7 @@ def evaluate(statement):
 		except:
 			raise Exception("Too few operands")
 	result = operandStack.pop()
+	print(operandStack)
 	if operandStack:raise Exception("Too many operands")
 	return result 
 
