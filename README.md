@@ -18,15 +18,15 @@ An esolang, based mainly on recursive-approaches (in the making)
     c. Now typing `recursiva` in the command line anywhere will run the REPL.   
 
 # Play around with basic commands:
-
-    Operands that take 1-argument:
+    
+    Operators that take 1-argument:
     
     ¬: MinusOne
     S: Square
     R: List of n-natural numbers
-    r: Exclusive list of n-natural numbers
+    r: List of n-natural numbers (n excluded)
 
-    OPerands that take 2-arguments:
+    Operators that take 2-arguments:
 
     +: Plus 
     -: Minus
@@ -39,9 +39,18 @@ To calculate (7)^2-1, use:
 
 [Note: Literals are tokenized in a way that no whitespace is required to separate them from atoms]
 
+
 To caclculate (((7-1)^2)-1)^2-1, use:
 >>¬	S	¬ S ¬ 7    
 
-[Note: Arbitrary whitespaces are allowed (except in literals)]
+[Note: Arbitrary whitespaces are allowed (except within same-literal, which would make it two separate literals)]
+
 
 To calculate ((4+6)*2)^2-1
+>>¬S*2 + 4 6
+
+This would also work for ((4+6)*2)^2-1 [Though not purely pre-fix]
+>>¬S*2 4+6
+
+Or this:
+>>¬S2* 4+6
