@@ -19,6 +19,8 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 # Play around with basic commands:
     
+    Now, the expressions are parsed in postfix manner i.e. operator follow the operands. 
+
     Operators that take 1-argument:
     
     ¬: MinusOne
@@ -35,22 +37,16 @@ An esolang, based mainly on recursive-approaches (in the making)
     
 
 To calculate (7)^2-1, use:
->>¬S7 
+>>7S¬ 
 
 [Note: Literals are tokenized in a way that no whitespace is required to separate them from atoms]
 
 
 To caclculate (((7-1)^2)-1)^2-1, use:
->>¬	S	¬ S ¬ 7    
+>>7 ¬  S ¬ S ¬  
 
 [Note: Arbitrary whitespaces are allowed (except within same-literal, which would make it two separate literals)]
 
 
 To calculate ((4+6)*2)^2-1
->>¬S*2 + 4 6
-
-This would also work for ((4+6)*2)^2-1 [Though not purely pre-fix]
->>¬S*2 4+6
-
-Or this:
->>¬S2* 4+6
+>>4 6+2*S¬
