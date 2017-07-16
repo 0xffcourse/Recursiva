@@ -25,7 +25,6 @@ dictionary={
 def atomicInterpret(atom,arguments):
 	if len(arguments)==1:return dictionary[atom]['func'](arguments[0])
 	if len(arguments)==2:return dictionary[atom]['func'](arguments[1],arguments[0])
-	if len(arguments)==3:return dictionary[atom]['func'](arguments[2],arguments[1],arguments[0])
 
 def isIntLiteral(x):
 	return x in[str(i) for i in range(10)]
@@ -52,23 +51,27 @@ def evaluate(statement):
 		if token in dictionary.keys():
 			operatorStack.append(token)
 		else:
-			operandStack.append(token)	
-	while operatorStack:
-		operator=operatorStack.pop()
-		try:
+			operandStack.append(token)
+		if operatorStack and len(operandStack)>=dictionary[operatorStack[-1]]['args']:
 			operands=[]
-			argsLeft = dictionary[operator]['args']
+			argsLeft = dictionary[operatorStack[-1]]['args']
 			while argsLeft:
 				operands.append(operandStack.pop())
 				argsLeft-=1
-			operandStack.append(atomicInterpret(operator,operands))
+			operandStack.append(atomicInterpret(operatorStack.pop(),operands))
+	while operatorStack:
+		operator=operatorStack.pop()
+		try:
+			operand=operandStack.pop()
+			operandStack.append(atomicInterpret(operator,operand))
 		except:
-			print("Too few operands")
+			print("Too Few Operands")
 			raise Exception
-	if len(operandStack)>1:
-		print ("Too many operands")
-		raise Exception 
-	return operandStack.pop()
+	result = operandStack.pop()
+	if operandStack:
+		print("Too many operands")
+		raise Exception
+	return result 
 	
 def interpret(statement):
 	try:
