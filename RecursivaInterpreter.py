@@ -36,12 +36,14 @@ def tokenizer(statement):
 		if isIntLiteral(token):
 			j=1
 			while i+j<len(statement)and isIntLiteral(statement[i+j]):
-				m=int(statement[i+j])
 				token+=statement[i+j];j+=1
 			i+=j;tokens+=[int(token)]
 		else:
-			if token==' 'or token=='	':i+=1
-			else:i+=1;tokens+=[token]
+			if token==' 'or token=='	':
+				i+=1
+			else:
+				i+=1
+				tokens+=[token]
 	return tokens
 
 def evaluate(statement):
