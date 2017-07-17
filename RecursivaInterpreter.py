@@ -8,6 +8,7 @@ minusOne			= lambda x:x-1
 square				= lambda x:x**2
 rangeInclusive		= lambda x:[i for i in range(1,x+1)]
 rangeExclusive		= lambda x:[i for i in range(1,x)]
+compare				= lambda x,y:x==y
 
 dictionary={
 	'¬':{'func':minusOne,'args':1},
@@ -18,6 +19,7 @@ dictionary={
 	'R':{'func':rangeInclusive,'args':1},
 	'r':{'func':rangeExclusive,'args':1},
 	'S':{'func':square,'args':1},
+	'=':{'func':compare,'args':2}
 }
 
 #--------------<Built-in Functions/>-------------
