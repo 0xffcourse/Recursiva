@@ -9,6 +9,8 @@ square				= lambda x:x**2
 rangeInclusive		= lambda x:[i for i in range(1,x+1)]
 rangeExclusive		= lambda x:[i for i in range(1,x)]
 compare				= lambda x,y:x==y
+lesserThan			= lambda x,y:x<y
+greaterThan			= lambda x,y:x>y
 
 dictionary={
 	'¬':{'func':minusOne,'args':1},
@@ -19,14 +21,16 @@ dictionary={
 	'R':{'func':rangeInclusive,'args':1},
 	'r':{'func':rangeExclusive,'args':1},
 	'S':{'func':square,'args':1},
+	'<':{'func':lesserThan,'args':2},
+	'>':{'func':greaterThan,'args':2},
 	'=':{'func':compare,'args':2}
 }
 
 #--------------<Built-in Functions/>-------------
 
-def atomicInterpret(atom,arguments):
-	if len(arguments)==1:return dictionary[atom]['func'](arguments[0])
-	if len(arguments)==2:return dictionary[atom]['func'](arguments[1],arguments[0])
+def atomicInterpret(func,arguments):
+	if len(arguments)==1:return dictionary[func]['func'](arguments[0])
+	if len(arguments)==2:return dictionary[func]['func'](arguments[1],arguments[0])
 
 def isIntLiteral(x):
 	return x in[str(i) for i in range(10)]
@@ -48,10 +52,10 @@ def tokenizer(statement):
 				tokens+=[token]
 	return tokens
 
-def evaluate(statement):
+def evaluate(expression):
 	operatorStack=[]
 	operandStack=[]
-	for token in tokenizer(statement):
+	for token in tokenizer(expression):
 		if token in dictionary.keys():
 			operatorStack.append(token)
 		else:

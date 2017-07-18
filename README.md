@@ -34,6 +34,7 @@ An esolang, based mainly on recursive-approaches (in the making)
     -: Minus
     *: Multiply
     /: Divide
+    =: Compare
     
 
 To calculate (7)^2-1, use:
