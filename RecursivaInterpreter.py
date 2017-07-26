@@ -1,3 +1,5 @@
+import re
+
 #--------------<Built-in Functions>--------------
 
 add					= lambda x,y:x+y
@@ -83,6 +85,14 @@ def evaluate(expression):
 	
 def interpret(statement):
 	try:
-		return str(evaluate(statement))
+		if ':' in statement:
+			split_statement=re.split(':',statement)
+			condition=split_statement[0]
+			statements=re.split('!',split_statement[1])
+			if_statement=statements[0]
+			else_statement=statements[1]
+			return [interpret(else_statement),interpret(if_statement)][interpret(condition)=='True']
+		else:
+			return str(evaluate(statement))
 	except:
 		raise Exception
