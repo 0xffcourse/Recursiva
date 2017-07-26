@@ -84,15 +84,17 @@ def evaluate(expression):
 	return result 
 	
 def interpret(statement):
+	print("interpreting: ", statement)
 	try:
 		if ':' in statement:
-			split_statement=re.split(':',statement)
-			condition=split_statement[0]
-			statements=re.split('!',split_statement[1])
-			if_statement=statements[0]
-			else_statement=statements[1]
-			return [interpret(else_statement),interpret(if_statement)][interpret(condition)=='True']
+			condition=statement[:statement.find(':')]
+			statements=statement[statement.find(':')+1:]
+			statements_inverted=statements[::-1]
+			if_statement=statements_inverted[statements_inverted.find('!')+1:][::-1]
+			else_statement=statements_inverted[:statements_inverted.find('!')][::-1]
+			if interpret(condition):return interpret(if_statement)
+			return interpret(else_statement)
 		else:
-			return str(evaluate(statement))
+			return evaluate(statement)
 	except:
 		raise Exception

@@ -6,6 +6,6 @@ os.system("color 1E")
 while 1:
 	inString=input(">>")
 	if inString=="q":break;
-	try:print('=>'+RecursivaInterpreter.interpret(inString))
+	try:print('=>'+str(RecursivaInterpreter.interpret(inString)))
 	except:print("=>Parse Error")
 	
