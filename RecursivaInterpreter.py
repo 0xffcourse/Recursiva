@@ -96,12 +96,15 @@ def function_interpret(function_statement):
 		return str(interpret(compiled))
 	except:
 		#probably is recursive, lets reduce it
-		i=0
+		recursive=compiled.count('$')*['']
 		compiled_inverted= compiled[::-1]
-		recursive=''
-		while compiled_inverted[i]!='$':i+=1
-		while compiled_inverted[i]not in ':!':recursive=compiled_inverted[i]+recursive;i+=1
-		compiled = compiled.replace(recursive, interpret(function_string+'@'+str(interpret(recursive[:-1])))+' ')
+		i=0
+		for n,x in enumerate(recursive):
+			while compiled_inverted[i]!='$':i+=1 
+			recursive[n]='$';i+=1
+			while compiled_inverted[i]not in ':!$ ':recursive[n]=compiled_inverted[i]+recursive[n];i+=1
+			recursived=str(interpret(recursive[n][:-1]))
+			compiled = compiled.replace(recursive[n], str(interpret(function_string+'@'+recursived+' ')))
 		return str(interpret(compiled)) 
 
 def interpret(statement):
