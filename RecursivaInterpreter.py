@@ -1,5 +1,3 @@
-import re
-
 #--------------<Built-in Functions>--------------
 
 add					= lambda x,y:x+y
@@ -13,6 +11,7 @@ rangeExclusive		= lambda x:[i for i in range(1,x)]
 compare				= lambda x,y:x==y
 lesserThan			= lambda x,y:x<y
 greaterThan			= lambda x,y:x>y
+printer				= lambda x:print(x)
 
 dictionary={
 	'¬':{'func':minusOne,'args':1},
@@ -25,7 +24,8 @@ dictionary={
 	'S':{'func':square,'args':1},
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
-	'=':{'func':compare,'args':2}
+	'=':{'func':compare,'args':2},
+	'P':{'func':printer,'args':1}
 }
 
 #--------------<Built-in Functions/>-------------
@@ -84,7 +84,6 @@ def evaluate(expression):
 	return result 
 	
 def interpret(statement):
-	print("interpreting: ", statement)
 	try:
 		if ':' in statement:
 			condition=statement[:statement.find(':')]
@@ -93,7 +92,8 @@ def interpret(statement):
 			if_statement=statements_inverted[statements_inverted.find('!')+1:][::-1]
 			else_statement=statements_inverted[:statements_inverted.find('!')][::-1]
 			if interpret(condition):return interpret(if_statement)
-			return interpret(else_statement)
+			if (else_statement):return interpret(else_statement)
+			else:return None
 		else:
 			return evaluate(statement)
 	except:
