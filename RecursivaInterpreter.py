@@ -84,6 +84,7 @@ def evaluate(expression):
 	return result
 
 def function_interpret(function_statement):
+	print('called: ', function_statement)
 	function_string = function_statement.split('@')[0]
 	arguments_string = function_statement.split('@')[1]
 	arguments = arguments_string.split()
@@ -92,8 +93,19 @@ def function_interpret(function_statement):
 	compiled = function_string
 	for i,x in enumerate(arguments):
 		compiled = compiled.replace(chr(ord(start_alpha)+i),str(interpret(x)))
-	return interpret(compiled) 
-	
+	try:
+		return str(interpret(compiled))
+	except:
+		#probably is recursive, lets reduce it
+		i=0
+		compiled_inverted= compiled[::-1]
+		recursive=''
+		while compiled_inverted[i]!='$':i+=1
+		while compiled_inverted[i]not in ':!':recursive=compiled_inverted[i]+recursive;i+=1
+		compiled = compiled.replace(recursive, interpret(function_string+'@'+str(interpret(recursive[:-1])))+' ')
+		print(compiled)
+		return str(interpret(compiled)) 
+
 def interpret(statement):
 	try:
 		if '@' in statement:
