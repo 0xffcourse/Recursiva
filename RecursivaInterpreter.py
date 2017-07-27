@@ -81,10 +81,23 @@ def evaluate(expression):
 	if operandStack:
 		print("Too many operands")
 		raise Exception
-	return result 
+	return result
+
+def function_interpret(function_string,arguments):
+	alphas=[i for i in function_string if 'a'<=i<='z']
+	start_alpha=min(alphas)
+	compiled = function_string
+	for i,x in enumerate(arguments):
+		compiled = compiled.replace(chr(ord(start_alpha)+i),x)
+	return interpret(compiled) 
 	
 def interpret(statement):
 	try:
+		if '@' in statement:
+			function_string = statement.split('@')[0]
+			arguments_string = statement.split('@')[1]
+			arguments = arguments_string.split()
+			return function_interpret(function_string,arguments)
 		if ':' in statement:
 			condition=statement[:statement.find(':')]
 			statements=statement[statement.find(':')+1:]
