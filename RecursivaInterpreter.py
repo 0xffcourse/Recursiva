@@ -83,21 +83,21 @@ def evaluate(expression):
 		raise Exception
 	return result
 
-def function_interpret(function_string,arguments):
+def function_interpret(function_statement):
+	function_string = function_statement.split('@')[0]
+	arguments_string = function_statement.split('@')[1]
+	arguments = arguments_string.split()
 	alphas=[i for i in function_string if 'a'<=i<='z']
 	start_alpha=min(alphas)
 	compiled = function_string
 	for i,x in enumerate(arguments):
-		compiled = compiled.replace(chr(ord(start_alpha)+i),x)
+		compiled = compiled.replace(chr(ord(start_alpha)+i),str(interpret(x)))
 	return interpret(compiled) 
 	
 def interpret(statement):
 	try:
 		if '@' in statement:
-			function_string = statement.split('@')[0]
-			arguments_string = statement.split('@')[1]
-			arguments = arguments_string.split()
-			return function_interpret(function_string,arguments)
+			return function_interpret(statement)
 		if ':' in statement:
 			condition=statement[:statement.find(':')]
 			statements=statement[statement.find(':')+1:]
