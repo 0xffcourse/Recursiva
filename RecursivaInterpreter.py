@@ -75,11 +75,9 @@ def evaluate(expression):
 			operand=operandStack.pop()
 			operandStack.append(atomicInterpret(operator,operand))
 		except:
-			print("Too Few Operands")
 			raise Exception
 	result = operandStack.pop()
 	if operandStack:
-		print("Too many operands")
 		raise Exception
 	return result
 
@@ -104,7 +102,7 @@ def function_interpret(function_statement):
 			recursive[n]='$';i+=1
 			while compiled_inverted[i]not in ':!$+ ':recursive[n]=compiled_inverted[i]+recursive[n];i+=1
 			recursived=str(interpret(recursive[n][:-1]))
-			compiled = compiled.replace(recursive[n], ' '+str(interpret(function_string+'@'+recursived+' ')))
+			compiled = compiled.replace(recursive[n], ' '+str(interpret(function_string+'@'+recursived))+' ')
 		return str(interpret(compiled)) 
 
 def interpret(statement):
