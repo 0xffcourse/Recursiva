@@ -33,17 +33,14 @@ dictionary={
 def atomicInterpret(func,arguments):
 	if len(arguments)==1:return dictionary[func]['func'](arguments[0])
 	if len(arguments)==2:return dictionary[func]['func'](arguments[1],arguments[0])
-
-def isIntLiteral(x):
-	return x in[str(i) for i in range(10)]
  
 def tokenizer(statement):
 	tokens,i,j=[],0,0
 	while i<len(statement):
 		token=statement[i]
-		if isIntLiteral(token):
+		if token in '0123456789':
 			j=1
-			while i+j<len(statement)and isIntLiteral(statement[i+j]):
+			while i+j<len(statement)and statement[i+j]in '0123456789':
 				token+=statement[i+j];j+=1
 			i+=j;tokens+=[int(token)]
 		else:
