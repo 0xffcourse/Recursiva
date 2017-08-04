@@ -72,11 +72,11 @@ And since the subtraction is done from left argument to right argument. This wil
 
 If your intention was to subtract (4)^2 from (5)^2, you could have done either:
 
-    >>mSnS@5 4
+    >>mSnS-@5 4
     
 OR:
 
-    >>nSmS@4 5
+    >>nSmS-@4 5
     
 
 # Conditionals:
