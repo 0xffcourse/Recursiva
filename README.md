@@ -99,13 +99,38 @@ For example, this function returns 1 for x less than 5, otherwise 100:
     will output:
     >>100
 
-Nesting conditionals is possible, though very very confusing:
+### Nesting conditionals is possible, though very very confusing:
 For example, this will evaluate to 1 for argument less than or equal to 50, 2 for argument less than 75 and 3 for argument more than or equal to 75.
 
-    >>a>50:a<75:2!3!1@[any_number]
+    >>a>50:a<75:2!3!1@[number_argument]
     
 # Recursive functions:
 
-It is possible to write recursive functions in Recursiva(Well, what would be the essence of the name if it couldn't have been done, right? :D)
+If you have the grasp of the conditionals and function-like features in recursiva, you can write recursive functions in Recursiva(Well, what would be the essence of the name if it couldn't have been done, right? :D).
 
+## Note: '$' acts as a marker for a recursive function call.  
 
+A function that calculates sum of n-natural numbers is written in recursiva as follows:
+
+    >>a=1:1!a¬$a+@[number_argument]
+    
+## How the fuck does it even work?
+
+Let's say we pass number 4 to the function, the expected value is 10 (i.e. 4+3+2+1)
+
+    >>a=1:1!a¬$a+@4
+    
+    This will be parsed as:
+    
+    >>4=1:1!4¬$4+@4
+
+First of all, the condition fails so we execute the else part which is recursive(because of the $). Notice the part 4¬$ This is where the magic happens. This will of course, evaluate to 3$. What does it mean?? This means that make the same function call but this time with 3 as the argument. Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
+
+    >>4=1:1!6 4+
+    
+    which is of course, 10.
+    
+# Challenges:
+
+1. Write a function in recursiva that commputes factorial for a given number.
+2. Write a function in recursiva that outputs the n-th fibonacci number for a given number n.
