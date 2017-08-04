@@ -119,3 +119,9 @@ def interpret(statement):
 			return evaluate(statement)
 	except:
 		raise Exception
+
+while 1:
+	inString=input(">>")
+	if inString=="q":break;
+	try:print('=>'+str(interpret(inString)))
+	except:print("=>Parse Error")

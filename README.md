@@ -6,16 +6,8 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 #### <i>You need python (3.5+ recommended) to run the interpreter. REPL might need few modifications for non-windows platform</i> 
 
-  1. Just Fire `python Recursiva.py` to start the REPL. Or,
+  1. Just Fire `python RecursivaInterpreter.py` to start the REPL. Or,
 
-  2. Follow these steps
-
-    a. Set RECURSIVA_ENV to the folderpath containing the RecursivaInterpreter.py, Recursiva.py(REPL) and 
-       recursiva.bat(batch file).
-  
-    b. Add '%RECURSIVA_ENV%' to the Path variable  
-  
-    c. Now typing `recursiva` in the command line anywhere will run the REPL.   
 
 # Play around with basic commands:
     
@@ -51,3 +43,5 @@ To caclculate (((7-1)^2)-1)^2-1, use:
 
 To calculate ((4+6)*2)^2-1
 >>4 6+2*S¬
+
+	##Conditionals: 
