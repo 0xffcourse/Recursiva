@@ -6,7 +6,7 @@ An esolang, based mainly on recursive-approaches (in the making)
 
 #### <i>You need python (3.5+ recommended) to run the interpreter. REPL might need few modifications for non-windows platform</i> 
 
-  1. Just Fire `python RecursivaInterpreter.py` to start the REPL. Or,
+  1. Just Fire `python RecursivaInterpreter.py` to start the REPL.
 
 
 # Play around with basic commands:
