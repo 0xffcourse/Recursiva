@@ -15,20 +15,25 @@ The expressions are really fix-agnostic i.e. any operation is done immediately o
 
 Some Operators that take 1-argument:
 
-¬: MinusOne
-S: Square
-R: List of n-natural numbers
-r: List of n-natural numbers (n excluded)
+    ¬: MinusOne
+    S: Square 
+    R: List of n-natural numbers
+    r: List of n-natural numbers (n excluded)
 
 Some Operators that take 2-arguments:
 
-+: Plus 
--: Minus
-*: Multiply
-/: Divide
-=: Compare
-&: Logical And
-|: Logical Or
+    Order of operands to be taken is from L to R. So 4 5- will mean 4-5 and not  5-4
+
+    +: Plus 
+    -: Minus
+    *: Multiply
+    /: Divide
+    =: Check if equal
+    >:greater than
+    <:less than
+    &: Logical And
+    |: Logical Or
+    
     
     To calculate (7)^2-1, use:
     >>7S¬ 
@@ -45,7 +50,7 @@ Some Operators that take 2-arguments:
     To calculate ((4+6)*2)^2-1
     >>4 6+2*S¬
     
-## Function-like structure:
+# Function-like structure:
 
 Let's say you want to create a function-like structure, to which just editing the parameters will save your time from writing the whole statement over and over. This is possible. The basic function-like feature in recursiva is given as:
 
@@ -57,7 +62,7 @@ For example you want a function that difference of squares of two numbers:
 
     >>mSnS-@4 5
     
-#### The above statement will evaluate as -9. Why?
+## The above statement will evaluate as -9. Why?
     
 Here a and b are variables, and 4 and 5 are arguments to the function. The first argument will be assigned to the lowest alphabet (i.e. m is assigned with 4, n is assigned to 5). The equivalent statement after assignment will be:
 
@@ -74,7 +79,7 @@ OR:
     >>nSmS@4 5
     
 
-## Conditionals:
+# Conditionals:
 
 The basic conditional statement structure is:
 
@@ -99,4 +104,8 @@ For example, this will evaluate to 1 for argument less than or equal to 50, 2 fo
 
     >>a>50:a<75:2!3!1@[any_number]
     
-## Recursive functions:
+# Recursive functions:
+
+It is possible to write recursive functions in Recursiva(Well, what would be the essence of the name if it couldn't have been done, right? :D)
+
+
