@@ -1,6 +1,6 @@
 # Recursiva
 
-An esolang, based mainly on recursive-approaches (in the making)
+Inspired from Dennis Mitchell's Jelly (and other languages made by guys in codegolf.stackexchange), Recursiva is an esolang, based mainly on recursive-approaches (in the making). 
 
 # How to run? 
 
