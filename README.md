@@ -17,8 +17,6 @@ Some Operators that take 1-argument:
 
     ¬: MinusOne
     S: Square 
-    R: List of n-natural numbers
-    r: List of n-natural numbers (n excluded)
 
 Some Operators that take 2-arguments:
 

@@ -6,8 +6,6 @@ multiply			= lambda x,y:x*y
 divide				= lambda x,y:x/y
 minusOne			= lambda x:x-1
 square				= lambda x:x**2
-rangeInclusive		= lambda x:[i for i in range(1,x+1)]
-rangeExclusive		= lambda x:[i for i in range(1,x)]
 compare				= lambda x,y:x==y
 lesserThan			= lambda x,y:x<y
 greaterThan			= lambda x,y:x>y
@@ -19,8 +17,6 @@ dictionary={
 	'-':{'func':subtract,'args':2},
 	'*':{'func':multiply,'args':2},
 	'/':{'func':divide,'args':2},
-	'R':{'func':rangeInclusive,'args':1},
-	'r':{'func':rangeExclusive,'args':1},
 	'S':{'func':square,'args':1},
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
