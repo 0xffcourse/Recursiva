@@ -126,4 +126,4 @@ while 1:
 	inString=input(">>")
 	if inString=="q":break;
 	try:print('=>'+str(interpret(inString)))
-	except:print("=>Parse Error")
+	except:print("=>Parse-Error or Math-Error!")
