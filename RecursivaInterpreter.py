@@ -43,12 +43,18 @@ def tokenizer(statement):
 			while i+j<len(statement)and statement[i+j]in '0123456789':
 				token+=statement[i+j];j+=1
 			i+=j;tokens+=[int(token)]
+		elif token==' 'or token=='	':
+			i+=1
+		elif token=='-':
+			j=1
+			while i+j<len(statement)and statement[i+j]in '0123456789':
+				token+=statement[i+j];j+=1
+			i+=j
+			if j>1:tokens+=[int(token)] #- follwed by integer
+			else:tokens+=[token]
 		else:
-			if token==' 'or token=='	':
-				i+=1
-			else:
-				i+=1
-				tokens+=[token]
+			i+=1
+			tokens+=[token]
 	return tokens
 
 def evaluate(expression):
