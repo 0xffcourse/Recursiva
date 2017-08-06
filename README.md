@@ -20,7 +20,7 @@ Some Operators that take 1-argument:
 
 Some Operators that take 2-arguments:
 
-    Order of operands to be taken is from L to R. So 4 5- will mean 4-5 and not  5-4
+    Order of operands to be taken is from L to R. So 4 5- will mean 4- 5 and not  5- 4
 
     +: Plus 
     -: Minus
@@ -37,6 +37,11 @@ Some Operators that take 2-arguments:
     >>7S¬ 
 
     [Note: Literals are tokenized in a way that no whitespace is required to separate them from atoms]
+    
+    To add 4 and -4(negative integer) use:
+    >>4+ -4
+    
+    [Note: Negative integers should be written in such a way that the negative sign immediately follows the number part, This is to avoid the ambiguity between - sign and - operator]
 
 
     To caclculate (((7-1)^2)-1)^2-1, use:
