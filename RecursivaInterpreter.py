@@ -71,8 +71,12 @@ def evaluate(expression):
 	while operatorStack:
 		operator=operatorStack.pop()
 		try:
-			operand=operandStack.pop()
-			operandStack.append(atomicInterpret(operator,operand))
+			operands=[]
+			argsLeft = dictionary[operator]['args']
+			while argsLeft:
+				operands.append(operandStack.pop())
+				argsLeft-=1
+			operandStack.append(atomicInterpret(operator,operands))
 		except:
 			raise Exception
 	result = operandStack.pop()
