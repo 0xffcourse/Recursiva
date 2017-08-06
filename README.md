@@ -15,7 +15,7 @@ The expressions are really fix-agnostic i.e. any operation is done immediately o
 
 Some Operators that take 1-argument:
 
-    ¬: MinusOne
+    ~: MinusOne
     S: Square 
 
 Some Operators that take 2-arguments:
@@ -34,7 +34,7 @@ Some Operators that take 2-arguments:
     
     
     To calculate (7)^2-1, use:
-    >>7S¬ 
+    >>7S~ 
 
     [Note: Literals are tokenized in a way that no whitespace is required to separate them from atoms]
     
@@ -45,13 +45,13 @@ Some Operators that take 2-arguments:
 
 
     To caclculate (((7-1)^2)-1)^2-1, use:
-    >>7 ¬  S ¬ S ¬  
+    >>7 ~  S ~ S ~  
 
     [Note: Arbitrary whitespaces are allowed (except within same-literal, which would make it two separate literals)]
 
 
     To calculate ((4+6)*2)^2-1
-    >>4 6+2*S¬
+    >>4 6+2*S~
     
 # Function-like structure:
 
@@ -115,25 +115,25 @@ If you have the grasp of the conditionals and function-like features in recursiv
 
 A function that calculates sum of n-natural numbers is written in recursiva as follows:
 
-    >>a=1:1!a¬$a+@[number_argument]
+    >>a=1:1!a~$a+@[number_argument]
     
 ## How the fuck does it even work?
 
 For 1 (edge-case), the statement will be as:
 
-    >>1=1:1!1¬$1+
+    >>1=1:1!1~$1+
     
 Here, the condition passes, so we evaluate 1(stopping the recursion). Of course, sum of 1-natural number is 1. 
 
 Let's say we pass number 4 to the function, the expected value is 10 (i.e. 4+3+2+1)
 
-    >>a=1:1!a¬$a+@4
+    >>a=1:1!a~$a+@4
     
     This will be parsed as:
     
-    >>4=1:1!4¬$4+@4
+    >>4=1:1!4~$4+@4
 
-First of all, the condition fails, so we execute the else part which is recursive(because of the $). Notice the part 4¬$ This is where the magic happens. This will of course, evaluate to 3$. What does it mean?? This means "make the same function call but this time with 3 as the argument". Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
+First of all, the condition fails, so we execute the else part which is recursive(because of the $). Notice the part 4~$ This is where the magic happens. This will of course, evaluate to 3$. What does it mean?? This means "make the same function call but this time with 3 as the argument". Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
 
     >>4=1:1!6 4+
     

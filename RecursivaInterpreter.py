@@ -12,7 +12,7 @@ greaterThan			= lambda x,y:x>y
 printer				= lambda x:print(x)
 
 dictionary={
-	'¬':{'func':minusOne,'args':1},
+	'~':{'func':minusOne,'args':1},
 	'+':{'func':add,'args':2},
 	'-':{'func':subtract,'args':2},
 	'*':{'func':multiply,'args':2},
