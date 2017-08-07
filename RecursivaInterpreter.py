@@ -10,6 +10,7 @@ compare				= lambda x,y:x==y
 lesserThan			= lambda x,y:x<y
 greaterThan			= lambda x,y:x>y
 printer				= lambda x:print(x)
+mod					= lambda x,y:x%y
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
@@ -17,6 +18,7 @@ dictionary={
 	'-':{'func':subtract,'args':2},
 	'*':{'func':multiply,'args':2},
 	'/':{'func':divide,'args':2},
+	'%':{'func':mod,'args':2},
 	'S':{'func':square,'args':1},
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
