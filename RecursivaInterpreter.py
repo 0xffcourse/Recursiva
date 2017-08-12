@@ -14,10 +14,14 @@ printer				= lambda x:print(x)
 ander				= lambda x,y:x and y
 orer				= lambda x,y:x or y
 mod					= lambda x,y:x%y
+doubler				= lambda x:2*x
+halver				= lambda x:x/2 
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
+	'D':{'func':doubler,'args':1},
+	'H':{'func':halver,'args':1},
 	'+':{'func':add,'args':2},
 	'-':{'func':subtract,'args':2},
 	'*':{'func':multiply,'args':2},
