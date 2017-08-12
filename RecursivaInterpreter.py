@@ -10,6 +10,8 @@ compare				= lambda x,y:x==y
 lesserThan			= lambda x,y:x<y
 greaterThan			= lambda x,y:x>y
 printer				= lambda x:print(x)
+ander				= lambda x,y:x and y
+orer				= lambda x,y:x or y
 mod					= lambda x,y:x%y
 
 dictionary={
@@ -23,6 +25,8 @@ dictionary={
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
 	'=':{'func':compare,'args':2},
+	'&':{'func':ander,'args':2},
+	'|':{'func':orer,'args':2},
 	'P':{'func':printer,'args':1}
 }
 
