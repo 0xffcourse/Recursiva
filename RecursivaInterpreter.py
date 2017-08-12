@@ -45,6 +45,12 @@ def tokenizer(statement):
 			while i+j<len(statement)and statement[i+j]in '0123456789':
 				token+=statement[i+j];j+=1
 			i+=j;tokens+=[int(token)]
+		elif token=='"':
+			j=1
+			token=''
+			while i+j<len(statement)and statement[i+j]!='"':
+				token+=statement[i+j];j+=1
+			i+=j+1;tokens+=[token]
 		elif token==' 'or token=='	':
 			i+=1
 		elif token=='-':
