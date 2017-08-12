@@ -128,5 +128,7 @@ def interpret(statement):
 while 1:
 	inString=input(">> ")
 	if inString=="q":break;
-	try:print('=> '+str(interpret(inString)))
+	try:
+		outPut=interpret(inString)
+		if outPut:print('=> '+str(outPut))
 	except:print("=> Parse-Error or Math-Error!")
