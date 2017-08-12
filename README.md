@@ -121,17 +121,17 @@ A function that calculates sum of n-natural numbers is written in recursiva as f
 
 For 1 (edge-case), the statement will be as:
 
-    >> =1 1:1!+#1~$1
+    >> =1 1:1!+#~1$1
     
 Here, the condition passes, so we evaluate 1(stopping the recursion). Of course, sum of 1-natural number is 1. 
 
 Let's say we pass number 4 to the function, the expected value is 10 (i.e. 4+3+2+1)
 
-    >> =a 1:1!+#a~$a@4
+    >> =a 1:1!+#~a$a@4
     
     This will be parsed as:
     
-    >> =4 1:1!+#4~$4@4
+    >> =4 1:1!+#~4$4@4
 
 First of all, the condition fails, so we execute the else part which is recursive(because of the #...$). Notice the part #4~$ This is where the magic happens. This will of course, evaluate to #3$. What does it mean?? This means "make the same function call but this time with 3 as the argument". Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
 
@@ -145,3 +145,4 @@ A few problems to sharpen your Recursiva skills.
 
 1. Write a function in recursiva that computes factorial for a given number.
 2. Write a function in recursiva that outputs the n-th fibonacci number for a given number n.
+3. Write a function in recursiva that computes the sum of n square numbers. (1+4+9+16...)
