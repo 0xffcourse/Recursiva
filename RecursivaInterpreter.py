@@ -92,13 +92,12 @@ def function_interpret(function_statement):
 		for n,x in enumerate(recursive):
 			while compiled_inverted[i]!='$':i+=1 
 			recursive[n]='$';i+=1
-			while compiled_inverted[i]!=' ':recursive[n]=compiled_inverted[i]+recursive[n];i+=1
+			while compiled_inverted[i]!='#':recursive[n]=compiled_inverted[i]+recursive[n];i+=1
 			recursived=str(interpret(recursive[n][:-1]))
-			compiled = compiled.replace(recursive[n], ' '+str(interpret(function_string+'@'+recursived))+' ')
+			compiled = compiled.replace('#'+recursive[n], ' '+str(interpret(function_string+'@'+recursived))+' ')
 		return str(interpret(compiled)) 
 
 def interpret(statement):
-	print("statement:", statement)
 	try:
 		if '@' in statement:
 			return function_interpret(statement)
