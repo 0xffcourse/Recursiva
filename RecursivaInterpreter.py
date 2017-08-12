@@ -120,7 +120,7 @@ def interpret(statement):
 		raise Exception
 
 while 1:
-	inString=input(">>")
+	inString=input(">> ")
 	if inString=="q":break;
-	try:print('=>'+str(interpret(inString)))
-	except:print("=>Parse-Error or Math-Error!")
+	try:print('=> '+str(interpret(inString)))
+	except:print("=> Parse-Error or Math-Error!")
