@@ -143,5 +143,5 @@ First of all, the condition fails, so we execute the else part which is recursiv
 
 A few problems to sharpen your Recursiva skills.
 
-1. Write a function in recursiva that commputes factorial for a given number.
+1. Write a function in recursiva that computes factorial for a given number.
 2. Write a function in recursiva that outputs the n-th fibonacci number for a given number n.
