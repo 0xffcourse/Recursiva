@@ -30,7 +30,7 @@ dictionary={
 
 def atomicInterpret(func,arguments):
 	if len(arguments)==1:return dictionary[func]['func'](arguments[0])
-	if len(arguments)==2:return dictionary[func]['func'](arguments[1],arguments[0])
+	if len(arguments)==2:return dictionary[func]['func'](arguments[0],arguments[1])
  
 def tokenizer(statement):
 	tokens,i,j=[],0,0
@@ -56,31 +56,18 @@ def tokenizer(statement):
 	return tokens
 
 def evaluate(expression):
-	operatorStack=[]
 	operandStack=[]
-	for token in tokenizer(expression):
+	for token in tokenizer(expression[::-1]):
 		if token in dictionary.keys():
-			operatorStack.append(token)
+			if len(operandStack)<dictionary[token]['args']:raise Exception
+			operands=[]
+			argsLeft = dictionary[token]['args']
+			while argsLeft:
+				operands.append(operandStack.pop())
+				argsLeft-=1
+			operandStack.append(atomicInterpret(token,operands))
 		else:
 			operandStack.append(token)
-		if operatorStack and len(operandStack)>=dictionary[operatorStack[-1]]['args']:
-			operands=[]
-			argsLeft = dictionary[operatorStack[-1]]['args']
-			while argsLeft:
-				operands.append(operandStack.pop())
-				argsLeft-=1
-			operandStack.append(atomicInterpret(operatorStack.pop(),operands))
-	while operatorStack:
-		operator=operatorStack.pop()
-		try:
-			operands=[]
-			argsLeft = dictionary[operator]['args']
-			while argsLeft:
-				operands.append(operandStack.pop())
-				argsLeft-=1
-			operandStack.append(atomicInterpret(operator,operands))
-		except:
-			raise Exception
 	result = operandStack.pop()
 	if operandStack:
 		raise Exception
