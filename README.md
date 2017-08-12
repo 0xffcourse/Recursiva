@@ -11,7 +11,7 @@ Inspired by Dennis Mitchell's Jelly (and other languages made by guys in codegol
 
 # Play around with basic commands:
     
-The expressions are really fix-agnostic i.e. any operation is done immediately once a matching number of operands for a current         operator is found, otherwise, operator will stay in the stack.  
+The expressions are (as of now) pre-fix evaluated.  
 
 Some Operators that take 1-argument:
 
@@ -31,27 +31,27 @@ Some Operators that take 2-arguments:
     <:less than
     &: Logical And
     |: Logical Or
-    
+    %: modular
     
     To calculate (7)^2-1, use:
-    >>7S~ 
+    >> ~S7 
 
     [Note: Literals are tokenized in a way that no whitespace is required to separate them from atoms]
     
     To add 4 and -4(negative integer) use:
-    >>4+ -4
+    >> +4-4
     
     [Note: Negative integers should be written in such a way that the negative sign immediately follows the number part, This is to avoid the ambiguity between - sign and - operator]
 
 
     To caclculate (((7-1)^2)-1)^2-1, use:
-    >>7 ~  S ~ S ~  
+    >> ~ S  ~ S ~  7
 
     [Note: Arbitrary whitespaces are allowed (except within same-literal, which would make it two separate literals)]
 
 
     To calculate ((4+6)*2)^2-1
-    >>4 6+2*S~
+    >> ~S*2+4 6
     
 # Function-like structure:
 
@@ -63,23 +63,23 @@ The valid variables are lower case a-z, you cacn start from any alphabet but the
 
 For example you want a function that difference of squares of two numbers:
 
-    >>mSnS-@4 5
+    >> -SmSn@4 5
     
 ## The above statement will evaluate as -9. Why?
     
-Here a and b are variables, and 4 and 5 are arguments to the function. The first argument will be assigned to the lowest alphabet (i.e. m is assigned with 4, n is assigned to 5). The equivalent statement after assignment will be:
+Here m and n are variables, and 4 and 5 are arguments to the function. The first argument will be assigned to the lowest alphabet (i.e. m is assigned with 4, n is assigned to 5). The equivalent statement after assignment will be:
 
-    >>4S5S-
+    >> -S4S5
     
 And since the subtraction is done from left argument to right argument. This will be -9.
 
 If your intention was to subtract (4)^2 from (5)^2, you could have done either:
 
-    >>mSnS-@5 4
+    >> -SmSn@5 4
     
 OR:
 
-    >>nSmS-@4 5
+    >> -SnSm@4 5
     
 
 # Conditionals:
@@ -90,52 +90,52 @@ The basic conditional statement structure is:
 
 For example, this function returns 1 for x less than 5, otherwise 100:
 
-    >>a<5:1!100@4
+    >> <a 5:1!100@4
     
     will output:
-    >>1
+    >> 1
     
     While:
     
-    >>a<5:1!100@5
+    >> <a 5:1!100@5
     
     will output:
-    >>100
+    >> 100
 
 ### Nesting conditionals is possible, though very very confusing:
 For example, this will evaluate to 1 for argument less than or equal to 50, 2 for argument less than 75 and 3 for argument more than or equal to 75.
 
-    >>a>50:a<75:2!3!1@[number_argument]
+    >> >a 50:<a 75:2!3!1@[number_argument]
     
 # Recursive functions:
 
 If you have the grasp of the conditionals and function-like features in recursiva, you can write recursive functions in Recursiva(Well, what would be the essence of the name if it couldn't have been done, right? :D).
 
-## Note: '$' acts as a marker for a recursive function call.  
+## Note: '#...$' acts as a marker for a recursive function call.  
 
 A function that calculates sum of n-natural numbers is written in recursiva as follows:
 
-    >>a=1:1!a~$a+@[number_argument]
+    >> =a 1:1!+#~a$a@[number_argument]
     
 ## How the fuck does it even work?
 
 For 1 (edge-case), the statement will be as:
 
-    >>1=1:1!1~$1+
+    >> =1 1:1!+#1~$1
     
 Here, the condition passes, so we evaluate 1(stopping the recursion). Of course, sum of 1-natural number is 1. 
 
 Let's say we pass number 4 to the function, the expected value is 10 (i.e. 4+3+2+1)
 
-    >>a=1:1!a~$a+@4
+    >> =a 1:1!+#a~$a@4
     
     This will be parsed as:
     
-    >>4=1:1!4~$4+@4
+    >> =4 1:1!+#4~$4@4
 
-First of all, the condition fails, so we execute the else part which is recursive(because of the $). Notice the part 4~$ This is where the magic happens. This will of course, evaluate to 3$. What does it mean?? This means "make the same function call but this time with 3 as the argument". Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
+First of all, the condition fails, so we execute the else part which is recursive(because of the #...$). Notice the part #4~$ This is where the magic happens. This will of course, evaluate to #3$. What does it mean?? This means "make the same function call but this time with 3 as the argument". Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
 
-    >>4=1:1!6 4+
+    >> =4 1:1!+6 4
     
     which is of course, 10.
     
