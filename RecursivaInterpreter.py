@@ -5,6 +5,7 @@ subtract			= lambda x,y:x-y
 multiply			= lambda x,y:x*y
 divide				= lambda x,y:x/y
 minusOne			= lambda x:x-1
+plusOne				= lambda x:x+1
 square				= lambda x:x**2
 compare				= lambda x,y:x==y
 lesserThan			= lambda x,y:x<y
@@ -16,6 +17,7 @@ mod					= lambda x,y:x%y
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
+	';':{'func':plusOne,'args':1},
 	'+':{'func':add,'args':2},
 	'-':{'func':subtract,'args':2},
 	'*':{'func':multiply,'args':2},
