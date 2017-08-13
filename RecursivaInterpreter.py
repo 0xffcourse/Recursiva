@@ -4,6 +4,8 @@ add					= lambda x,y:x+y
 subtract			= lambda x,y:x-y
 multiply			= lambda x,y:x*y
 divide				= lambda x,y:x/y
+integerer			= lambda x:int(x)
+floater				= lambda x:float(x)
 minusOne			= lambda x:x-1
 plusOne				= lambda x:x+1
 square				= lambda x:x**2
@@ -26,6 +28,8 @@ dictionary={
 	'-':{'func':subtract,'args':2},
 	'*':{'func':multiply,'args':2},
 	'/':{'func':divide,'args':2},
+	"I":{'func':integerer,'args':1},
+	"F":{'func':floater,'args':1},
 	'%':{'func':mod,'args':2},
 	'S':{'func':square,'args':1},
 	'<':{'func':lesserThan,'args':2},
@@ -46,11 +50,11 @@ def tokenizer(statement):
 	tokens,i,j=[],0,0
 	while i<len(statement):
 		token=statement[i]
-		if token in '0123456789':
+		if token in '0123456789.':
 			j=1
-			while i+j<len(statement)and statement[i+j]in '0123456789':
+			while i+j<len(statement)and statement[i+j]in '0123456789.':
 				token+=statement[i+j];j+=1
-			i+=j;tokens+=[int(token)]
+			i+=j;tokens+=[[int,float]['.'in token](token)]
 		elif token=='"':
 			j=1
 			token=''
@@ -61,10 +65,10 @@ def tokenizer(statement):
 			i+=1
 		elif token=='-':
 			j=1
-			while i+j<len(statement)and statement[i+j]in '0123456789':
+			while i+j<len(statement)and statement[i+j]in '0123456789.':
 				token+=statement[i+j];j+=1
 			i+=j
-			if j>1:tokens+=[int(token)] #- follwed by integer
+			if j>1:tokens+=[[int,float]['.'in token](token)] #- follwed by integer
 			else:tokens+=[token]
 		else:
 			i+=1
@@ -73,6 +77,7 @@ def tokenizer(statement):
 
 def evaluate(expression):
 	operandStack=[]
+	print (tokenizer(expression))
 	for token in tokenizer(expression)[::-1]:
 		if token in dictionary.keys():
 			if len(operandStack)<dictionary[token]['args']:raise Exception
@@ -136,5 +141,5 @@ while 1:
 	if inString=="q":break;
 	try:
 		outPut=interpret(inString)
-		if outPut:print('=> '+str(outPut))
+		if outPut!=None:print('=> '+str(outPut))
 	except:print("=> Parse-Error or Math-Error!")
