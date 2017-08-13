@@ -77,7 +77,6 @@ def tokenizer(statement):
 
 def evaluate(expression):
 	operandStack=[]
-	print (tokenizer(expression))
 	for token in tokenizer(expression)[::-1]:
 		if token in dictionary.keys():
 			if len(operandStack)<dictionary[token]['args']:raise Exception
