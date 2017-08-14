@@ -1,23 +1,23 @@
 #--------------<Built-in Functions>--------------
 
-add					= lambda x,y:x+y
-subtract			= lambda x,y:x-y
-multiply			= lambda x,y:x*y
-divide				= lambda x,y:x/y
-integerer			= lambda x:int(x)
-floater				= lambda x:float(x)
-minusOne			= lambda x:x-1
-plusOne				= lambda x:x+1
-square				= lambda x:x**2
-compare				= lambda x,y:x==y
-lesserThan			= lambda x,y:x<y
-greaterThan			= lambda x,y:x>y
-printer				= lambda x:print(x)
-ander				= lambda x,y:x and y
-orer				= lambda x,y:x or y
-mod					= lambda x,y:x%y
-doubler				= lambda x:2*x
-halver				= lambda x:x/2 
+adder			= lambda x,y:x+y
+subtract		= lambda x,y:x-y
+multiply		= lambda x,y:x*y
+divide			= lambda x,y:x/y
+integerer		= lambda x:int(x)
+floater			= lambda x:float(x)
+minusOne		= lambda x:x-1
+plusOne			= lambda x:x+1
+square			= lambda x:x**2
+compare			= lambda x,y:x==y
+lesserThan		= lambda x,y:x<y
+greaterThan		= lambda x,y:x>y
+printer			= lambda x:print(x)
+ander			= lambda x,y:x and y
+orer			= lambda x,y:x or y
+moder			= lambda x,y:x%y
+doubler			= lambda x:2*x
+halver			= lambda x:x/2 
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
@@ -59,6 +59,12 @@ def tokenizer(statement):
 			j=1
 			token=''
 			while i+j<len(statement)and statement[i+j]!='"':
+				token+=statement[i+j];j+=1
+			i+=j+1;tokens+=[token]
+		elif token=="'":
+			j=1
+			token=''
+			while i+j<len(statement)and statement[i+j]!="'":
 				token+=statement[i+j];j+=1
 			i+=j+1;tokens+=[token]
 		elif token==' 'or token=='	':
