@@ -1,5 +1,7 @@
 import sys
 
+sys.setrecursionlimit(1 << 30)
+
 #--------------<Built-in Functions>--------------
 
 adder			= lambda x,y:x+y
