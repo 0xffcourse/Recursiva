@@ -12,12 +12,12 @@ square			= lambda x:x**2
 compare			= lambda x,y:int(x==y)
 lesserThan		= lambda x,y:int(x<y)
 greaterThan		= lambda x,y:int(x>y)
-printer			= lambda x:print(x.replace('/n','\n'))
+printer			= lambda x:print(str(x).replace('/n','\n'))
 ander			= lambda x,y:int(x and y)
 orer			= lambda x,y:int(x or y)
 moder			= lambda x,y:x%y
 doubler			= lambda x:2*x
-halver			= lambda x:x/2 
+halver			= lambda x:x/2
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
@@ -72,7 +72,7 @@ def tokenizer(statement):
 			token=''
 			while i+j<len(statement)and statement[i+j]!=']':
 				token+=statement[i+j];j+=1
-			i+=j+1;tokens+=[token]
+			i+=j+1;tokens+=['['+token+']']
 		elif token==' 'or token=='	':
 			i+=1
 		elif token=='-':
@@ -153,5 +153,5 @@ while 1:
 	if inString=="q":break;
 	try:
 		outPut=interpret(inString)
-		if outPut!=None:print('=> '+str(outPut))
+		if str(outPut)!='None':print('=> '+str(outPut))
 	except:print("=> Parse-Error or Math-Error!")
