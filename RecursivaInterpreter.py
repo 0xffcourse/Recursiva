@@ -97,7 +97,7 @@ def evaluate(expression):
 				operands.append(eval(operandStack.pop()))
 				argsLeft-=1
 			calc=atomicInterpret(token,operands)
-			if type(calc)==type("fg"):operandStack.append("'"+calc+"'")
+			if type(calc)==type(""):operandStack.append("'"+calc+"'")
 			else:operandStack.append(str(calc))
 		else:
 			operandStack.append(token)
@@ -110,7 +110,7 @@ def function_interpret(function_statement):
 	function_string = function_statement.split('@')[0]
 	arguments_string = function_statement.split('@')[1]
 	arguments = arguments_string.split()
-	alphas=[i for i in function_string if 'a'<=i<='z']
+	alphas=[i for i in tokenizer(function_string) if len(i)==1 and 'a'<=i<='z']
 	start_alpha=min(alphas)
 	compiled = function_string
 	for i,x in enumerate(arguments):
