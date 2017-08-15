@@ -9,12 +9,12 @@ floater			= lambda x:float(x)
 minusOne		= lambda x:x-1
 plusOne			= lambda x:x+1
 square			= lambda x:x**2
-compare			= lambda x,y:x==y
-lesserThan		= lambda x,y:x<y
-greaterThan		= lambda x,y:x>y
+compare			= lambda x,y:int(x==y)
+lesserThan		= lambda x,y:int(x<y)
+greaterThan		= lambda x,y:int(x>y)
 printer			= lambda x:print(x)
-ander			= lambda x,y:x and y
-orer			= lambda x,y:x or y
+ander			= lambda x,y:int(x and y)
+orer			= lambda x,y:int(x or y)
 moder			= lambda x,y:x%y
 doubler			= lambda x:2*x
 halver			= lambda x:x/2 
