@@ -12,7 +12,7 @@ square			= lambda x:x**2
 compare			= lambda x,y:int(x==y)
 lesserThan		= lambda x,y:int(x<y)
 greaterThan		= lambda x,y:int(x>y)
-printer			= lambda x:print(x)
+printer			= lambda x:print(x.replace('/n','\n'))
 ander			= lambda x,y:int(x and y)
 orer			= lambda x,y:int(x or y)
 moder			= lambda x,y:x%y
