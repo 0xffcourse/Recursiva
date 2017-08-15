@@ -107,7 +107,7 @@ def function_interpret(function_statement):
 	start_alpha=min(alphas)
 	compiled = function_string
 	for i,x in enumerate(arguments):
-		compiled = compiled.replace(chr(ord(start_alpha)+i),str(interpret(x)))
+		compiled = compiled.replace(chr(ord(start_alpha)+i),' '+str(interpret(x))+' ')
 	try:
 		return str(interpret(compiled))
 	except:
