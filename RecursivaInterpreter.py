@@ -114,9 +114,10 @@ def function_interpret(function_statement):
 	arguments = arguments_string.split()
 	compiled = tokenizer(function_string)
 	alphas=[i for i in compiled if len(i)==1 and 'a'<=i<='z']
-	start_alpha=min(alphas)
-	for i,x in enumerate(compiled):
-		if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+str(interpret(arguments[ord(x)-ord(start_alpha)]))+' '
+	if alphas:
+		start_alpha=min(alphas)
+		for i,x in enumerate(compiled):
+			if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+str(interpret(arguments[ord(x)-ord(start_alpha)]))+' '
 	compiled=''.join(compiled)
 	try:
 		return str(interpret(compiled))
