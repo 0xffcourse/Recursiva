@@ -8,6 +8,7 @@ adder			= lambda x,y:x+y
 subtract		= lambda x,y:x-y
 multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
+slicefromleft	= lambda x:x[1:]
 integerer		= lambda x:int(x)
 floater			= lambda x:float(x)
 minusOne		= lambda x:x-1
@@ -22,6 +23,7 @@ orer			= lambda x,y:int(x or y)
 moder			= lambda x,y:x%y
 doubler			= lambda x:2*x
 halver			= lambda x:x/2
+length			= lambda x:len(x)
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
@@ -36,6 +38,8 @@ dictionary={
 	"F":{'func':floater,'args':1},
 	'%':{'func':moder,'args':2},
 	'S':{'func':square,'args':1},
+	'T':{'func':slicefromleft,'args':1},
+	'L':{'func':length,'args':1},
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
 	'=':{'func':compare,'args':2},
@@ -119,7 +123,7 @@ def function_interpret(function_statement):
 	if alphas:
 		start_alpha=min(alphas)
 		for i,x in enumerate(compiled):
-			if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+str(interpret(arguments[ord(x)-ord(start_alpha)]))+' '
+			if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+arguments[ord(x)-ord(start_alpha)]+' '
 	compiled=''.join(compiled)
 	try:
 		return str(interpret(compiled))
