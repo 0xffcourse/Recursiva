@@ -151,30 +151,32 @@ def interpret(statement):
 	except:
 		raise Exception
 
-if len(sys.argv)==1:
 #Behaves as an REPL
+if len(sys.argv)==1:
 	while 1:
 		inString=input(">> ")
 		if inString=="q":break;
 		try:
 			outPut=interpret(inString)
 			if str(outPut)!='None':print('=> '+str(outPut))
-		except:print("=> Parse-Error or Math-Error!")
+		except:print("=> Error!")
+	exit()
+
 #Read code and inputs from file
-code=inputted=''
-code_file_path = sys.argv[1]
-with open(code_file_path) as code_file:
-	for row in code_file:
-		code=row
-code_file.close()
-if len(sys.argv)==3:
-	input_file_path = sys.argv[2]
-	with open(input_file_path) as input_file:
-		for row in input_file:
-			inputted=row
-	input_file.close()
 try:
-	if inputted:code+='@'+inputted
+	code=inputted=''
+	code_file_path = sys.argv[1]
+	with open(code_file_path) as code_file:
+		for row in code_file:
+			code=row
+	code_file.close()
+	if len(sys.argv)==3:
+		input_file_path = sys.argv[2]
+		with open(input_file_path) as input_file:
+			for row in input_file:
+				inputted=row
+		input_file.close()
+		if inputted:code+='@'+inputted
 	outPut=interpret(code)
 	if str(outPut)!='None':print(str(outPut))
-except:print("Parse-Error or Math-Error!")
+except:print("Error!")
