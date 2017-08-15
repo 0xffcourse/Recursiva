@@ -112,11 +112,12 @@ def function_interpret(function_statement):
 	function_string = function_statement.split('@')[0]
 	arguments_string = function_statement.split('@')[1]
 	arguments = arguments_string.split()
-	alphas=[i for i in tokenizer(function_string) if len(i)==1 and 'a'<=i<='z']
+	compiled = tokenizer(function_string)
+	alphas=[i for i in compiled if len(i)==1 and 'a'<=i<='z']
 	start_alpha=min(alphas)
-	compiled = function_string
-	for i,x in enumerate(arguments):
-		compiled = compiled.replace(chr(ord(start_alpha)+i),' '+str(interpret(x))+' ')
+	for i,x in enumerate(compiled):
+		if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+str(interpret(arguments[ord(x)-ord(start_alpha)]))+' '
+	compiled=''.join(compiled)
 	try:
 		return str(interpret(compiled))
 	except:
