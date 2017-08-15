@@ -60,19 +60,19 @@ def tokenizer(statement):
 			token=''
 			while i+j<len(statement)and statement[i+j]!='"':
 				token+=statement[i+j];j+=1
-			i+=j+1;tokens+=['"'+token+'"']
-		elif token=='[':
-			j=1
-			token=''
-			while i+j<len(statement)and statement[i+j]!=']':
-				token+=statement[i+j];j+=1
-			i+=j+1;tokens+=['['+token+']']
+			i+=j+1;tokens+=["'"+token+"'"]
 		elif token=="'":
 			j=1
 			token=''
 			while i+j<len(statement)and statement[i+j]!="'":
 				token+=statement[i+j];j+=1
-			i+=j+1;tokens+=['"'+token+'"']
+			i+=j+1;tokens+=["'"+token+"'"]
+		elif token=='[':
+			j=1
+			token=''
+			while i+j<len(statement)and statement[i+j]!=']':
+				token+=statement[i+j];j+=1
+			i+=j+1;tokens+=[token]
 		elif token==' 'or token=='	':
 			i+=1
 		elif token=='-':
@@ -96,7 +96,9 @@ def evaluate(expression):
 			while argsLeft:
 				operands.append(eval(operandStack.pop()))
 				argsLeft-=1
-			operandStack.append(str(atomicInterpret(token,operands)))
+			calc=atomicInterpret(token,operands)
+			if type(calc)==type("fg"):operandStack.append("'"+calc+"'")
+			else:operandStack.append(str(calc))
 		else:
 			operandStack.append(token)
 	result = eval(operandStack.pop())
