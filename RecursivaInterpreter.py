@@ -128,7 +128,7 @@ def function_interpret(function_statement):
 			if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+arguments[ord(x)-ord(start_alpha)]+' '
 	compiled=''.join(compiled)
 	try:
-		return str(interpret(compiled))
+		return interpret(compiled)
 	except:
 		#probably is recursive, lets reduce it
 		recursive=compiled.count('$')*['']
@@ -140,9 +140,10 @@ def function_interpret(function_statement):
 			while compiled_inverted[i]!='#':recursive[n]=compiled_inverted[i]+recursive[n];i+=1
 			recursived=interpret(recursive[n][:-1])
 			if type(recursived)==type(""):recursived=("'"+recursived+"'") #place string under quotes
+			if type(recursived)==type([]):recursived="["+','.join(str(i)for i in recursived)+"]"
 			else:recursived=str(recursived)
 			compiled = compiled.replace('#'+recursive[n], ' '+str(interpret(function_string+'@'+recursived))+' ')
-		return str(interpret(compiled)) 
+		return interpret(compiled) 
 
 def interpret(statement):
 	try:
