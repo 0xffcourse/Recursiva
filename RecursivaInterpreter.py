@@ -8,15 +8,17 @@ adder			= lambda x,y:x+y
 subtract		= lambda x,y:x-y
 multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
-slicefromleft	= lambda x:x[1:]
+piecefromleft	= lambda x:x[0]
+slicefromLeft	= lambda x:x[1:]
 integerer		= lambda x:int(x)
 floater			= lambda x:float(x)
 minusOne		= lambda x:x-1
 plusOne			= lambda x:x+1
 square			= lambda x:x**2
-compare			= lambda x,y:int(x==y)
-lesserThan		= lambda x,y:int(x<y)
-greaterThan		= lambda x,y:int(x>y)
+order			= lambda x:ord(x)
+compare			= lambda x,y:x==y
+lesserThan		= lambda x,y:x<y
+greaterThan		= lambda x,y:x>y
 printer			= lambda x:print(str(x).replace('/n','\n'))
 ander			= lambda x,y:x and y
 orer			= lambda x,y:x or y
@@ -30,6 +32,7 @@ dictionary={
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
 	'D':{'func':doubler,'args':1},
+	'O':{'func':order,'args':1},
 	'H':{'func':halver,'args':1},
 	'+':{'func':adder,'args':2},
 	'-':{'func':subtract,'args':2},
@@ -40,7 +43,8 @@ dictionary={
 	'%':{'func':moder,'args':2},
 	'S':{'func':square,'args':1},
 	'Z':{'func':slicestring,'args':3},
-	'T':{'func':slicefromleft,'args':1},
+	'T':{'func':slicefromLeft,'args':1},
+	'Y':{'func':piecefromleft,'args':1},
 	'L':{'func':length,'args':1},
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
@@ -134,7 +138,9 @@ def function_interpret(function_statement):
 			while compiled_inverted[i]!='$':i+=1 
 			recursive[n]='$';i+=1
 			while compiled_inverted[i]!='#':recursive[n]=compiled_inverted[i]+recursive[n];i+=1
-			recursived=str(interpret(recursive[n][:-1]))
+			recursived=interpret(recursive[n][:-1])
+			if type(recursived)==type(""):recursived=("'"+recursived+"'") #place string under quotes
+			else:recursived=str(recursived)
 			compiled = compiled.replace('#'+recursive[n], ' '+str(interpret(function_string+'@'+recursived))+' ')
 		return str(interpret(compiled)) 
 
