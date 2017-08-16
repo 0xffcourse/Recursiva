@@ -9,7 +9,7 @@ subtract		= lambda x,y:x-y
 multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
 slicefromleft	= lambda x:x[1:]
-integerer		= lambda x:int(x)
+integerer		= lambda x:x and 1 or 0
 floater			= lambda x:float(x)
 minusOne		= lambda x:x-1
 plusOne			= lambda x:x+1
@@ -18,12 +18,13 @@ compare			= lambda x,y:int(x==y)
 lesserThan		= lambda x,y:int(x<y)
 greaterThan		= lambda x,y:int(x>y)
 printer			= lambda x:print(str(x).replace('/n','\n'))
-ander			= lambda x,y:int(x and y)
-orer			= lambda x,y:int(x or y)
+ander			= lambda x,y:x and y
+orer			= lambda x,y:x or y
 moder			= lambda x,y:x%y
 doubler			= lambda x:2*x
 halver			= lambda x:x/2
 length			= lambda x:len(x)
+slicestring		= lambda x,s,y:s[x:y]
 
 dictionary={
 	'~':{'func':minusOne,'args':1},
@@ -38,6 +39,7 @@ dictionary={
 	"F":{'func':floater,'args':1},
 	'%':{'func':moder,'args':2},
 	'S':{'func':square,'args':1},
+	'Z':{'func':slicestring,'args':3},
 	'T':{'func':slicefromleft,'args':1},
 	'L':{'func':length,'args':1},
 	'<':{'func':lesserThan,'args':2},
@@ -49,10 +51,6 @@ dictionary={
 }
 
 #--------------<Built-in Functions/>-------------
-
-def atomicInterpret(func,arguments):
-	if len(arguments)==1:return dictionary[func]['func'](arguments[0])
-	if len(arguments)==2:return dictionary[func]['func'](arguments[0],arguments[1])
  
 def tokenizer(statement):
 	tokens,i,j=[],0,0
@@ -104,8 +102,8 @@ def evaluate(expression):
 			while argsLeft:
 				operands.append(eval(operandStack.pop()))
 				argsLeft-=1
-			calc=atomicInterpret(token,operands)
-			if type(calc)==type(""):operandStack.append("'"+calc+"'")
+			calc=dictionary[token]['func'](*operands)
+			if type(calc)==type(""):operandStack.append("'"+calc+"'") #place string under quotes
 			else:operandStack.append(str(calc))
 		else:
 			operandStack.append(token)
