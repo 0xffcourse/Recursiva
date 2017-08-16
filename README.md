@@ -6,8 +6,19 @@ Inspired by Dennis Mitchell's Jelly (and other languages made by guys in codegol
 
 #### <i>You need python 3 (3.5+ recommended) to run the interpreter. REPL might need few modifications for non-windows platform</i> 
 
-  1. Just Fire `python RecursivaInterpreter.py` to start the REPL.
+  1. Just Fire `python RecursivaInterpreter.py` to start the REPL. 
+  
+  OR
+  
+  2. `python RecursivaInterpreter.py code.txt input.txt` to get recursiva code and get input from the files.
+  
+# Hello, World! in recursiva:
 
+This is the code that prints "Hello, World!" in Recursiva
+
+    P"Hello, World!"
+    
+P is the operator that prints string following it.
 
 # Play around with basic commands:
     
@@ -90,14 +101,14 @@ The basic conditional statement structure is:
 
 For example, this function returns 1 for x less than 5, otherwise 100:
 
-    >> <a 5:1!100@4
+    >> <a5:1!100@4
     
     will output:
     >> 1
     
     While:
     
-    >> <a 5:1!100@5
+    >> <a5:1!100@5
     
     will output:
     >> 100
@@ -105,7 +116,7 @@ For example, this function returns 1 for x less than 5, otherwise 100:
 ### Nesting conditionals is possible, though very very confusing:
 For example, this will evaluate to 1 for argument less than or equal to 50, 2 for argument less than 75 and 3 for argument more than or equal to 75.
 
-    >> >a 50:<a 75:2!3!1@[number_argument]
+    >> >a50:<a75:2!3!1@[number_argument]
     
 # Recursive functions:
 
@@ -115,7 +126,7 @@ If you have the grasp of the conditionals and function-like features in recursiv
 
 A function that calculates sum of n-natural numbers is written in recursiva as follows:
 
-    >> =a 1:1!+#~a$a@[number_argument]
+    >> =a1:1!+#~a$a@[number_argument]
     
 ## How the fuck does it even work?
 
@@ -127,11 +138,11 @@ Here, the condition passes, so we evaluate 1(stopping the recursion). Of course,
 
 Let's say we pass number 4 to the function, the expected value is 10 (i.e. 4+3+2+1)
 
-    >> =a 1:1!+#~a$a@4
+    >> =a1:1!+#~a$a@4
     
     This will be parsed as:
     
-    >> =4 1:1!+#~4$4@4
+    >> =4 1:1!+#~4$4
 
 First of all, the condition fails, so we execute the else part which is recursive(because of the #...$). Notice the part #4~$ This is where the magic happens. This will of course, evaluate to #3$. What does it mean?? This means "make the same function call but this time with 3 as the argument". Eventually after further recursion the 3$ will certainly evaluate to f(3) i.e. 6. Thus resulting statement will be something like: 
 
@@ -146,3 +157,15 @@ A few problems to sharpen your Recursiva skills.
 1. Write a function in recursiva that computes factorial for a given number.
 2. Write a function in recursiva that outputs the n-th fibonacci number for a given number n.
 3. Write a function in recursiva that computes the sum of n square numbers. (1+4+9+16...)
+4. Write a function in recursiva that prints a n by n square of '#'(or any character) for a given number n i.e.:
+   For n=1, must print
+    
+       #
+    
+   For n=5, must print
+  
+       #####
+       #####
+       #####
+       #####
+       #####
