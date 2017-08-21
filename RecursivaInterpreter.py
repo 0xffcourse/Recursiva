@@ -8,7 +8,9 @@ adder			= lambda x,y:x+y
 subtract		= lambda x,y:x-y
 multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
+character		= lambda x:chr(x)
 piecefromleft	= lambda x:x[0]
+listify			= lambda x:[x]
 slicefromLeft	= lambda x:x[1:]
 integerer		= lambda x:int(x)
 floater			= lambda x:float(x)
@@ -27,11 +29,14 @@ doubler			= lambda x:2*x
 halver			= lambda x:x/2
 length			= lambda x:len(x)
 slicestring		= lambda x,s,y:s[x:y]
+squareroot		= lambda x:x**.5
 
 dictionary={
+	'A':{'func':listify,'args':1},
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
 	'D':{'func':doubler,'args':1},
+	'C':{'func':character,'args':1},
 	'O':{'func':order,'args':1},
 	'H':{'func':halver,'args':1},
 	'+':{'func':adder,'args':2},
@@ -41,6 +46,7 @@ dictionary={
 	"I":{'func':integerer,'args':1},
 	"F":{'func':floater,'args':1},
 	'%':{'func':moder,'args':2},
+	"R":{'func':squareroot,'args':1},
 	'S':{'func':square,'args':1},
 	'Z':{'func':slicestring,'args':3},
 	'T':{'func':slicefromLeft,'args':1},
