@@ -30,9 +30,16 @@ halver			= lambda x:x/2
 length			= lambda x:len(x)
 slicestring		= lambda x,s,y:s[x:y]
 squareroot		= lambda x:x**.5
+appendnewline 	= lambda x:x+'/n'
+joiner			= lambda x,y:x.join(y)
+stringify		= lambda x:[str(i) for i in x]
+ranger			= lambda x:list(range(1,x+1))
 
 dictionary={
 	'A':{'func':listify,'args':1},
+	'N':{'func':appendnewline,'args':1},
+	'W':{'func':stringify,'args':1},
+	'J':{'func':joiner,'args':2},
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
 	'D':{'func':doubler,'args':1},
@@ -57,7 +64,8 @@ dictionary={
 	'=':{'func':compare,'args':2},
 	'&':{'func':ander,'args':2},
 	'|':{'func':orer,'args':2},
-	'P':{'func':printer,'args':1}
+	'P':{'func':printer,'args':1},
+	'B':{'func':ranger,'args':1}
 }
 
 #--------------<Built-in Functions/>-------------
