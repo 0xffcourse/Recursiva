@@ -35,6 +35,7 @@ appendnewline 	= lambda x:x+'/n'
 joiner			= lambda x,y:x.join(y)
 stringify		= lambda x:[str(i) for i in x]
 ranger			= lambda x:list(range(1,x+1))
+exponent		= lambda x,y:x**y
 
 dictionary={
 	'A':{'func':listify,'args':1},
@@ -54,6 +55,7 @@ dictionary={
 	'/':{'func':divide,'args':2},
 	"I":{'func':integerer,'args':1},
 	"F":{'func':floater,'args':1},
+	"X":{'func':exponent,'args':2},
 	'%':{'func':moder,'args':2},
 	"R":{'func':squareroot,'args':1},
 	'S':{'func':square,'args':1},
