@@ -9,6 +9,7 @@ subtract		= lambda x,y:x-y
 multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
 character		= lambda x:chr(x)
+stringer		= lambda x:str(x)
 piecefromleft	= lambda x:x[0]
 listify			= lambda x:[x]
 slicefromLeft	= lambda x:x[1:]
@@ -39,6 +40,7 @@ dictionary={
 	'A':{'func':listify,'args':1},
 	'N':{'func':appendnewline,'args':1},
 	'W':{'func':stringify,'args':1},
+	'V':{'func':stringer,'args':1},
 	'J':{'func':joiner,'args':2},
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
