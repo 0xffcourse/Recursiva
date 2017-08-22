@@ -10,7 +10,7 @@ multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
 character		= lambda x:chr(x)
 stringer		= lambda x:str(x)
-piecefromleft	= lambda x:x[0]
+piecefromlist	= lambda x,i:x[i]
 listify			= lambda x:[x]
 slicefromLeft	= lambda x:x[1:]
 integerer		= lambda x:int(x)
@@ -61,7 +61,7 @@ dictionary={
 	'S':{'func':square,'args':1},
 	'Z':{'func':slicestring,'args':3},
 	'T':{'func':slicefromLeft,'args':1},
-	'Y':{'func':piecefromleft,'args':1},
+	'Y':{'func':piecefromlist,'args':2},
 	'L':{'func':length,'args':1},
 	'<':{'func':lesserThan,'args':2},
 	'>':{'func':greaterThan,'args':2},
