@@ -38,6 +38,8 @@ ranger			= lambda x:list(range(1,x+1))
 splitter		= lambda x,a:x.split(a)
 exponent		= lambda x,y:x**y
 pythoneval		= lambda x:eval(x)
+pythonexec		= lambda x:exec(x)
+recursivaeval   = lambda x:interpret(x) 
 stringin		= lambda x,y:y in x
 
 dictionary={
@@ -47,6 +49,8 @@ dictionary={
 	'V':{'func':stringer,'args':1},
 	'U':{'func':pythoneval,'args':1},
 	'N':{'func':stringin,'args':2},
+	'M':{'func':recursivaeval,'args':1},
+	'K':{'func':pythonexec,'args':1},
 	'J':{'func':joiner,'args':2},
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
@@ -171,9 +175,9 @@ def function_interpret(function_statement):
 
 def interpret(statement):
 	try:
-		if '@' in statement:
+		if '@' in tokenizer(statement):
 			return function_interpret(statement)
-		if ':' in statement:
+		if ':' in tokenizer(statement):
 			condition=statement[:statement.find(':')]
 			statements=statement[statement.find(':')+1:]
 			statements_inverted=statements[::-1]
