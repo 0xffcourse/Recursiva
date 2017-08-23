@@ -37,12 +37,16 @@ stringify		= lambda x:[str(i) for i in x]
 ranger			= lambda x:list(range(1,x+1))
 splitter		= lambda x,a:x.split(a)
 exponent		= lambda x,y:x**y
+pythoneval		= lambda x:eval(x)
+stringin		= lambda x,y:y in x
 
 dictionary={
 	'A':{'func':listify,'args':1},
 	'N':{'func':appendnewline,'args':1},
 	'W':{'func':stringify,'args':1},
 	'V':{'func':stringer,'args':1},
+	'U':{'func':pythoneval,'args':1},
+	'N':{'func':stringin,'args':2},
 	'J':{'func':joiner,'args':2},
 	'~':{'func':minusOne,'args':1},
 	';':{'func':plusOne,'args':1},
