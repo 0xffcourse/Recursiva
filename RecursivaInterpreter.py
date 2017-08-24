@@ -145,8 +145,9 @@ def evaluate(expression):
 	return result
 
 def function_interpret(function_statement):
-	function_string = function_statement.split('@')[0]
-	arguments_string = function_statement.split('@')[1]
+	function_statement=function_statement[::-1]
+	arguments_string = function_statement[:function_statement.find('@')][::-1]
+	function_string = function_statement[function_statement.find('@')+1:][::-1]
 	arguments = arguments_string.split()
 	compiled = tokenizer(function_string)
 	alphas=[i for i in compiled if len(i)==1 and 'a'<=i<='z']
