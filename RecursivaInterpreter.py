@@ -44,7 +44,7 @@ stringin		= lambda x,y:y in x
 
 dictionary={
 	'A':{'func':listify,'args':1},
-	'N':{'func':appendnewline,'args':1},
+	'G':{'func':appendnewline,'args':1},
 	'W':{'func':stringify,'args':1},
 	'V':{'func':stringer,'args':1},
 	'U':{'func':pythoneval,'args':1},
