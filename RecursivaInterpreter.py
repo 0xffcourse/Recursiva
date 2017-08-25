@@ -42,7 +42,12 @@ pythonexec		= lambda x:exec(x)
 recursivaeval   = lambda x:interpret(x) 
 stringin		= lambda x,y:y in x
 
+def foreach(x,y):
+	for i in x:
+		interpret(y+'@'+str(i))
+
 dictionary={
+	'{':{'func':foreach,'args':2},
 	'A':{'func':listify,'args':1},
 	'G':{'func':appendnewline,'args':1},
 	'W':{'func':stringify,'args':1},
@@ -98,7 +103,7 @@ def tokenizer(statement):
 			token=''
 			while i+j<len(statement)and statement[i+j]!='"':
 				token+=statement[i+j];j+=1
-			i+=j+1;tokens+=["'"+token+"'"]
+			i+=j+1;tokens+=['"'+token+'"']
 		elif token=="'":
 			j=1
 			token=''
