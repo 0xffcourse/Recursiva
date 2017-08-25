@@ -9,7 +9,7 @@ subtract		= lambda x,y:x-y
 multiply		= lambda x,y:x*y
 divide			= lambda x,y:x/y
 character		= lambda x:chr(x)
-stringer		= lambda x:str(x)
+stringer		= lambda x:type(x)==type('') and '"'+x+'"' or str(x)
 piecefromlist	= lambda x,i:x[i]
 listify			= lambda x:[x]
 slicefromLeft	= lambda x:x[1:]
