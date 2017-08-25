@@ -42,6 +42,7 @@ pythoneval		= lambda x:eval(x)
 pythonexec		= lambda x:exec(x)
 recursivaeval   = lambda x:interpret(x) 
 stringin		= lambda x,y:y in x
+reverse			= lambda x:x[::-1]
 
 def foreach(x,y):
 	for i in x:
@@ -49,6 +50,7 @@ def foreach(x,y):
 
 dictionary={
 	'{':{'func':foreach,'args':2},
+	'_':{'func':reverse,'args':1},
 	'A':{'func':listify,'args':1},
 	'G':{'func':appendnewline,'args':1},
 	'W':{'func':stringify,'args':1},
