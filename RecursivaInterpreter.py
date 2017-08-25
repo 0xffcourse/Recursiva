@@ -206,7 +206,7 @@ if len(sys.argv)==1:
 		if inString=="q":break;
 		try:
 			outPut=interpret(inString)
-			if str(outPut)!='None':print('=> '+str(outPut))
+			if str(outPut)!='None':print('=> '+str(outPut).replace('/n','\n'))
 		except:print("=> Error!")
 	exit()
 
@@ -226,5 +226,5 @@ try:
 		input_file.close()
 		if inputted:code+='@'+inputted
 	outPut=interpret(code)
-	if str(outPut)!='None':print(str(outPut))
+	if str(outPut)!='None':print(str(outPut).replace('/n','\n'))
 except:print("Error!")
