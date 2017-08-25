@@ -69,7 +69,7 @@ dictionary={
 	'/':{'func':divide,'args':2},
 	"I":{'func':integerer,'args':1},
 	"F":{'func':floater,'args':1},
-	"X":{'func':exponent,'args':2},
+	"^":{'func':exponent,'args':2},
 	'%':{'func':moder,'args':2},
 	"R":{'func':squareroot,'args':1},
 	'S':{'func':square,'args':1},
