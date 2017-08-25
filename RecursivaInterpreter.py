@@ -32,6 +32,7 @@ length			= lambda x:len(x)
 slicestring		= lambda x,s,y:s[x:y]
 squareroot		= lambda x:x**.5
 appendnewline 	= lambda x:x+'/n'
+joinwithnewline = lambda x:'/n'.join(x)
 joiner			= lambda x,y:x.join(y)
 stringify		= lambda x:[str(i) for i in x]
 ranger			= lambda x:list(range(1,x+1))
@@ -69,6 +70,7 @@ dictionary={
 	'/':{'func':divide,'args':2},
 	"I":{'func':integerer,'args':1},
 	"F":{'func':floater,'args':1},
+	"E":{'func':joinwithnewline,'args':1},
 	"^":{'func':exponent,'args':2},
 	'%':{'func':moder,'args':2},
 	"R":{'func':squareroot,'args':1},
