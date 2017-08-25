@@ -44,7 +44,7 @@ stringin		= lambda x,y:y in x
 
 def foreach(x,y):
 	for i in x:
-		interpret(y.replace('[',str(i)))
+		interpret(y.replace('[',' '+str(i)+' '))
 
 dictionary={
 	'{':{'func':foreach,'args':2},
