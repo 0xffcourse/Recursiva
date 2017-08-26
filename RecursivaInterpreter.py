@@ -46,7 +46,8 @@ reverse			= lambda x:x[::-1]
 
 def foreach(x,y):
 	for i in x:
-		interpret(y.replace('[',' '+str(i)+' '))
+		if type(x)==type('f'):interpret(y.replace('[','"'+str(i)+'"'))
+		else:interpret(y.replace('[',' '+str(i)+' '))
 
 dictionary={
 	'{':{'func':foreach,'args':2},
@@ -159,11 +160,11 @@ def function_interpret(function_statement):
 	function_string = function_statement[function_statement.find('@')+1:][::-1]
 	arguments = arguments_string.split()
 	compiled = tokenizer(function_string)
-	alphas=[i for i in compiled if len(i)==1 and 'a'<=i<='z']
+	alphas=[i for i in compiled if len(i)==1 and 'a'<=i<='f']
 	if alphas:
 		start_alpha=min(alphas)
 		for i,x in enumerate(compiled):
-			if len(x)==1 and 'a'<=x<='z':compiled[i]=' '+arguments[ord(x)-ord(start_alpha)]+' '
+			if len(x)==1 and 'a'<=x<='f':compiled[i]=' '+arguments[ord(x)-ord(start_alpha)]+' '
 	compiled=''.join(compiled)
 	try:
 		return interpret(compiled)
