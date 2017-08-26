@@ -46,8 +46,8 @@ reverse			= lambda x:x[::-1]
 
 def foreach(x,y):
 	for i in x:
-		if type(x)==type('f'):interpret(y.replace('[','"'+str(i)+'"'))
-		else:interpret(y.replace('[',' '+str(i)+' '))
+		if type(x)==type('f'):interpret(y.replace('}','"'+str(i)+'"'))
+		else:interpret(y.replace('}',' '+str(i)+' '))
 
 dictionary={
 	'{':{'func':foreach,'args':2},
