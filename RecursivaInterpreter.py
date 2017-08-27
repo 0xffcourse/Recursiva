@@ -1,5 +1,8 @@
 import sys
 
+from repl import RCLI, rprint
+
+
 sys.setrecursionlimit(1 << 30)
 
 #--------------<Built-in Functions>--------------
@@ -22,7 +25,7 @@ order			= lambda x:ord(x)
 compare			= lambda x,y:x==y
 lesserThan		= lambda x,y:x<y
 greaterThan		= lambda x,y:x>y
-printer			= lambda x:print(str(x).replace('/n','\n'))
+printer			= lambda x:rprint(str(x).replace('/n','\n'))
 ander			= lambda x,y:x and y
 orer			= lambda x,y:x or y
 moder			= lambda x,y:x%y
@@ -204,14 +207,21 @@ def interpret(statement):
 
 #Behaves as an REPL
 if len(sys.argv)==1:
-	while 1:
-		inString=input(">> ")
-		if inString=="q":break;
-		try:
-			outPut=interpret(inString)
-			if str(outPut)!='None':print('=> '+str(outPut).replace('/n','\n'))
-		except:print("=> Error!")
-	exit()
+	with RCLI() as cli:
+		#initialize rprint by enclosing current_buffer
+		rprint = rprint(cli.current_buffer)
+
+		while 1:
+
+			doc = cli.run()
+			if doc.text=="q":break;
+			try:
+				outPut=interpret(doc.text.rstrip(';;'))
+				if str(outPut)!='None':rprint('=> '+str(outPut).replace('/n','\n'))
+			except:rprint("=> Error!")
+			finally:
+				cli.current_buffer.inc()
+		exit()
 
 #Read code and inputs from file
 try:
@@ -229,5 +239,5 @@ try:
 		input_file.close()
 		if inputted:code+='@'+inputted
 	outPut=interpret(code)
-	if str(outPut)!='None':print(str(outPut).replace('/n','\n'))
-except:print("Error!")
+	if str(outPut)!='None':rprint(str(outPut).replace('/n','\n'))
+except:rprint("Error!")
